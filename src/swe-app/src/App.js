@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import SignUp from './components/SignUp'; 
-import SignIn from './components/SignIn';
-import Checkout from './components/Checkout';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SignUp from './pages/SignUp'; 
+import SignIn from './pages/SignIn';
+import Checkout from './pages/Checkout';
 import Navbar from './components/Navbar';
-import Home from './components/Home';
+import Home from './pages/Home';
 
 
 
