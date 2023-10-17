@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
@@ -12,7 +12,7 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            TRVL
+          <img src={process.env.PUBLIC_URL + '/logo.png'} alt="Logo" style={{ width: '200px', height: 'px' }}/>
             <i class='fab fa-typo3' />
           </Link>
           <div className='menu-icon' onClick={handleClick}>
@@ -20,8 +20,17 @@ function Navbar() {
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+              <Link to='/home' className='nav-links' onClick={closeMobileMenu}>
                 Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/catalog'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Catalog
               </Link>
             </li>
             <li className='nav-item'>
@@ -52,6 +61,16 @@ function Navbar() {
                 Sign Up
               </Link>
             </li>
+            <li>
+              <Link
+                to='/cart'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Cart
+              </Link>
+            </li>
+            
           </ul>
         </div>
       </nav>
