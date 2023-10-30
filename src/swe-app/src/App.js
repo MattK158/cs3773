@@ -9,6 +9,9 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Cart from './pages/Cart';
 
+// testing purposes
+import Admin from './pages/Admin';
+
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [cart, setCart] = useState([]);
@@ -26,6 +29,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/catalog" element={<Catalog addToCart={addToCart} />} />
           <Route path="/cart" render={() => <Cart cart={cart} />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
     </Router>
   );
