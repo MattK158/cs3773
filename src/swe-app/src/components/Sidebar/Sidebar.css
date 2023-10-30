@@ -1,0 +1,67 @@
+.Sidebar {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 4rem;
+    transition: all 300ns ease;
+}
+
+.logo {
+    display: flex;
+    height: 5rem;
+    font-size: 22px;
+    font-weight: bold;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    height: 4%;
+}
+
+.logo>img {
+    height: 3rem;
+    width: 3rem;
+}
+
+/* menu */
+.menu {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.menuItem {
+    display: flex;
+    gap: 1rem;
+    transition: all 300ms ease;
+    align-items: center;
+    margin-left: 2rem;
+    position: relative;
+    height: 2.5rem;
+    font-size: 14px;
+    border-radius: 0.7rem;
+}
+
+.menuItem:hover {
+
+    cursor: pointer;
+}
+
+.active::before{
+    content: '';
+    height: 100%;
+    width: 8px;
+    margin-right: calc(1rem - 8px);
+    background: var(--pink);
+}
+
+.active{
+    margin-left: 0;
+    background: var(--activeItem);
+}
+
+.menu .menuItem:last-child {
+    bottom: 2.3rem;
+    width: 100%;
+    position: absolute;
+}
