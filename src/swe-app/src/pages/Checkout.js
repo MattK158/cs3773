@@ -1,6 +1,7 @@
 // Checkout.js
 
 import React, { useState } from 'react';
+import './Checkout.css';
 
 const Checkout = () => {
     const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ const Checkout = () => {
     };
 
     return (
-        <div>
+        <div className="checkout-container">
             <h2>Checkout</h2>
             <form onSubmit={handleSubmit}>
                 <div>
