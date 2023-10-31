@@ -41,7 +41,7 @@ function CompactCard({param, setExpanded}) {
             <div className="detail">
                 <Png/>
                 <span>${param.value}</span>
-                <span>Last 24 hours</span>
+                <span>Last 7 days</span>
             </div>
         </motion.div>
     )
@@ -90,7 +90,7 @@ function ExpandedCard({param, setExpanded}) {
                 show: true,
             },
 
-            // find a way to make this dynamic
+            // find a way to make this dynamic based off of data being pulled from database
             xaxis: {
                 type: "datetime",
                 categories: [
@@ -121,7 +121,7 @@ function ExpandedCard({param, setExpanded}) {
         <div className="chartContainer">
             <Chart series={param.series} type='area' options={data.options}/>
         </div>
-        <span>Last 24 hours</span>
+        <span>Last 7 days</span>
         </motion.div>
     )
 }
