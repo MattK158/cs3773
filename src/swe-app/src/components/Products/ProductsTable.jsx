@@ -8,13 +8,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import '../Table/Table.css';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
+import '../Table/Table.css';
 
 function createData(name, productID, quantity, category, price) {
   return { name, productID, quantity, category, price };
@@ -28,57 +29,19 @@ const rows = [
   createData("Milk", "4", "10", "Grocery", "$2.00"),
 ];
 
-function TableRowComponent({ row }) {
-    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-  
-    const handleModifyClick = () => {
-      setIsDialogOpen(true);
-    };
-  
-    const handleUpdateClick = () => {
-      // Handle the update logic here
-      setIsDialogOpen(false);
-    };
-  
-    const handleCancelClick = () => {
-      setIsDialogOpen(false);
-    };
 
-    const handleDeleteClick = () => {
-        // Handle the delete logic here
-        setIsDialogOpen(false);
-    };
-  
-    return (
-      <TableRow key={row.name}>
-        {/* ... */}
-        <TableCell align="left">
-          <Button variant="outlined" color="primary" onClick={handleModifyClick}>Modify</Button>
-          <Dialog open={isDialogOpen} onClose={handleCancelClick}>
-            <DialogTitle>Modify {row.name}</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-
-                {/* Include the form or other content for modifying the product here */}
-                
-
-
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleUpdateClick} color="primary">Update</Button>
-              <Button onClick={handleDeleteClick} color="primary">Delete</Button>
-              <Button onClick={handleCancelClick} color="primary" autoFocus>Cancel</Button>
-            </DialogActions>
-          </Dialog>
-        </TableCell>
-      </TableRow>
-    );
-  }
 
 export default function BasicTable() {
-  // ...
+  const [open, setOpen] = React.useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  
   return (
     <div className="Table" style={{ overflowY: 'scroll', maxHeight: '600px' }}>
       <TableContainer component={Paper} style={{ boxShadow: '0px 13px 20px #80808029' }}>
@@ -92,8 +55,6 @@ export default function BasicTable() {
               <TableCell align="left">Price</TableCell>
             </TableRow>
           </TableHead>
-
-
           <TableBody>
             {rows.map((row) => (
                 <TableRow
@@ -101,18 +62,75 @@ export default function BasicTable() {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                 <TableCell component="th" scope="row">
-                    {row.name}
+                  {row.name}
                 </TableCell>
                 <TableCell align="left">{row.productID}</TableCell>
                 <TableCell align="left">{row.quantity}</TableCell>
                 <TableCell align="left">{row.category}</TableCell>
                 <TableCell align="left">{row.price}</TableCell>
-                <TableRowComponent row={row} />
+                <TableCell align="left">
+                <Button variant="outlined" onClick={handleClickOpen}>
+                  Modify
+                </Button>
+                <Dialog open={open} onClose={handleClose}>
+                  <DialogTitle>Modify Product</DialogTitle>
+                  <DialogContent>
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="productName"
+                      label="Product Name"
+                      type="text"
+                      fullWidth
+                      variant="standard"
+                    />
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="productID"
+                      label="Product ID"
+                      type="text"
+                      fullWidth
+                      variant="standard"
+                    />
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="quantity"
+                      label="Product Quantity"
+                      type="number"
+                      fullWidth
+                      variant="standard"
+                    />
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="category"
+                      label="Product Category"
+                      type="text"
+                      fullWidth
+                      variant="standard"
+                    />
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="price"
+                      label="Product Price"
+                      type="text"
+                      fullWidth
+                      variant="standard"
+                    />
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose}>Delete</Button>
+                    <Button onAbort={handleClose}>Update</Button>
+                  </DialogActions>
+                </Dialog>
+                </TableCell>
                 </TableRow>
             ))}
             </TableBody>
-
-          
         </Table>
       </TableContainer>
     </div>
