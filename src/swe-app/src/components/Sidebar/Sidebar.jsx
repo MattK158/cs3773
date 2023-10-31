@@ -1,20 +1,11 @@
 import React from 'react';
 import './Sidebar.css';
-import Logo from '../../assets/logo.png';
 import { SidebarData } from '../../Data/Data';
-import { UilSignOutAlt } from '@iconscout/react-unicons'
 
-
-const Sidebar = () => {
-    const [selected, setSelected] = React.useState(0);
-
-
-
-
+const Sidebar = ({ selected, setSelected }) => {
+    // const [selected, setSelected] = React.useState(0);
     return (
         <div className="Sidebar">
-
-            {/* logo */}
             <div className="logo">
                 <span>CodeCart</span>
             </div>
@@ -34,11 +25,7 @@ const Sidebar = () => {
                         </div>
                     )
                 })}
-
-            
             </div>
-
-
         </div>
     )
 }

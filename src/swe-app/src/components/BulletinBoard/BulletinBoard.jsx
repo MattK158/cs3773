@@ -5,7 +5,7 @@ import { UilUserCircle } from '@iconscout/react-unicons';
 
 const BulletinBoard = () => {
     return (
-        <div className="BulletinBoard">
+        <div className="BulletinBoard" style={{overflowY: 'scroll', maxHeight: '400px'}}>
             {BulletinData.map((data) => {
                 return (
                     <div className="Bulletin">

@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import './Table.css';
+import '../Table/Table.css';
 
 function createData(customer, orderID, date, time, status) {
   return { customer, orderID, date, time, status };
@@ -52,10 +52,8 @@ const makeStyles = (status) => {
 }
 
 export default function BasicTable() {
-  const recentRows = rows.slice(0, 4); // get the first 4 rows
   return (
-    <div className="Table">
-        <h3>Recent Orders</h3>
+    <div className="Table" style={{overflowY: 'scroll', maxHeight: '600px'}}>
         <TableContainer component={Paper}
         style={{boxShadow: "0px 13px 20px #80808029"}}
         >
@@ -70,7 +68,7 @@ export default function BasicTable() {
             </TableRow>
             </TableHead>
             <TableBody>
-            {recentRows.map((row) => (
+            {rows.map((row) => (
                 <TableRow
                 key={row.customer}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
