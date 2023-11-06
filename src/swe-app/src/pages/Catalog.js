@@ -8,7 +8,7 @@ const Catalog = ({ addToCart }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiUrl = 'http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/items'; // Note the change here for the proxy
+    const apiUrl = 'http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/items';
     axios.get(apiUrl)
       .then((response) => {
         setItems(response.data);
@@ -28,7 +28,7 @@ const Catalog = ({ addToCart }) => {
     <div className="catalog">
       {items.map(item => (
         <div key={item.id} className="catalog-item">
-          <img src={"https://pngfre.com/wp-content/uploads/apple-98-964x1024.png"} alt={item.name} className="catalog-item-image" />
+          <img src={item.imgUrl} alt={item.name} className="catalog-item-image" />
           <h3 className="catalog-item-name">{item.name}</h3>
           <p className="catalog-item-description">{item.description}</p>
           <p className="catalog-item-price">${item.price}</p>

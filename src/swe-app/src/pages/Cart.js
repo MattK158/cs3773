@@ -1,5 +1,4 @@
 function Cart({ cart }) {
-    // Check if the cart is empty
     if (!cart || cart.length === 0) {
       return <div>Your cart is empty.</div>;
     }
