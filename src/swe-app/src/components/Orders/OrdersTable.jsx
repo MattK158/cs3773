@@ -51,7 +51,7 @@ const makeStyles = (status) => {
   }
 }
 
-export default function BasicTable() {
+export default function OrdersTable() {
   return (
     <div className="Table" style={{overflowY: 'scroll', maxHeight: '600px'}}>
         <TableContainer component={Paper}

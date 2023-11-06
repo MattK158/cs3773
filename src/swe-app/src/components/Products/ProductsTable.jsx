@@ -17,30 +17,31 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import '../Table/Table.css';
 
-function createData(name, productID, quantity, category, price) {
-  return { name, productID, quantity, category, price };
-}
+// function createData(name, productID, quantity, category, price) {
+//   return { name, productID, quantity, category, price };
+// }
 
-// needs to be dynamic
-const rows = [
-  createData("Ground Beef", "1", "10", "Grocery", "$10.00"),
-  createData("Chicken Breast", "2", "27", "Grocery", "$7.00"),
-  createData("Hershey Chocolate", "3", "55", "Grocery", "$0.99"),
-  createData("Milk", "4", "10", "Grocery", "$2.00"),
-];
+// // needs to be dynamic
+// const rows = [
+//   createData("Ground Beef", "1", "10", "Grocery", "$10.00"),
+//   createData("Chicken Breast", "2", "27", "Grocery", "$7.00"),
+//   createData("Hershey Chocolate", "3", "55", "Grocery", "$0.99"),
+//   createData("Milk", "4", "10", "Grocery", "$2.00"),
+// ];
 
 
 
-export default function BasicTable() {
+export default function ProductsTable({ products }) {
   const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
+  
+  const handleModifyClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleModifyClose = () => {
     setOpen(false);
   };
+  
   
   return (
     <div className="Table" style={{ overflowY: 'scroll', maxHeight: '600px' }}>
@@ -56,23 +57,23 @@ export default function BasicTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {products.map((product) => (
                 <TableRow
-                key={row.name}
+                key={product.id} // needs to be product ID
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {product.name}
                 </TableCell>
-                <TableCell align="left">{row.productID}</TableCell>
-                <TableCell align="left">{row.quantity}</TableCell>
-                <TableCell align="left">{row.category}</TableCell>
-                <TableCell align="left">{row.price}</TableCell>
+                <TableCell align="left">{product.id}</TableCell>
+                <TableCell align="left">{product.quantity}</TableCell>
+                <TableCell align="left">{product.category}</TableCell>
+                <TableCell align="left">{product.price}</TableCell>
                 <TableCell align="left">
-                <Button variant="outlined" onClick={handleClickOpen}>
+                <Button variant="outlined" onClick={handleModifyClickOpen}>
                   Modify
                 </Button>
-                <Dialog open={open} onClose={handleClose}>
+                <Dialog open={open} onClose={handleModifyClose}>
                   <DialogTitle>Modify Product</DialogTitle>
                   <DialogContent>
                     <TextField
@@ -122,9 +123,9 @@ export default function BasicTable() {
                     />
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleClose}>Delete</Button>
-                    <Button onAbort={handleClose}>Update</Button>
+                    <Button onClick={handleModifyClose}>Cancel</Button>
+                    <Button onClick={handleModifyClose}>Delete</Button>
+                    <Button onClick={handleModifyClose}>Update</Button>
                   </DialogActions>
                 </Dialog>
                 </TableCell>

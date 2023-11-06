@@ -19,7 +19,7 @@
   
 // ];
 
-// export default function BasicTable() {
+// export default function CustomersTable() {
 //   return (
 //     <div className="Table" style={{overflowY: 'scroll', maxHeight: '600px'}}>
 //         <TableContainer component={Paper}
