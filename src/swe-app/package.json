@@ -1,5 +1,6 @@
 {
   "name": "swe-app",
+  "proxy": "http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -46,5 +47,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+    
   }
 }

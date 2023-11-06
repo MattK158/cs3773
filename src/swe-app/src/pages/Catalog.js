@@ -1,99 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import './Catalog.css';
 import axios from 'axios';
+import './Catalog.css';
 
-function Catalog() {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortOption, setSortOption] = useState("default");
-  const [cart, setCart] = useState([]);
+const Catalog = ({ addToCart }) => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiUrl = 'https://fakestoreapi.com/products';
-
+    const apiUrl = 'http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/items'; // Note the change here for the proxy
     axios.get(apiUrl)
       .then((response) => {
-        setProducts(response.data);
-        setFilteredProducts(response.data);
+        setItems(response.data);
+        setLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching product data:', error);
+        console.error('Error fetching data: ', error);
+        setError(error);
+        setLoading(false);
       });
   }, []);
 
-  const handleAddToCart = (productId) => {
-    const product = products.find(p => p.id === productId);
-    addToCart(product);
-    alert(`Product ${productId} added to cart.`);
-  };
-
-  const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-
-    if (value === "") {
-      setFilteredProducts(products);
-    } else {
-      const filtered = products.filter(product =>
-        product.title.toLowerCase().includes(value.toLowerCase())
-      );
-      setFilteredProducts(filtered);
-    }
-  };
-
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-    alert(`Product ${product.id} added to cart.`);
-  };
-
-  const sortProducts = (productsList) => {
-    let sortedProducts = [...productsList];
-
-    switch (sortOption) {
-      case "price-asc":
-        sortedProducts.sort((a, b) => a.price - b.price);
-        break;
-      case "price-desc":
-        sortedProducts.sort((a, b) => b.price - a.price);
-        break;
-      default:
-        break;
-    }
-
-    return sortedProducts;
-  };
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">Error: Could not load items. Please try again later.</div>;
 
   return (
     <div className="catalog">
-      <h1>Product Catalog</h1>
-      <button onClick={() => window.location.href = "/cart"}>Go to Cart</button>
-      <div className="sort-filter-section">
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-        <select onChange={(e) => setSortOption(e.target.value)}>
-          <option value="default">Sort by</option>
-          <option value="price-asc">Price (Low to High)</option>
-          <option value="price-desc">Price (High to Low)</option>
-        </select>
-      </div>
-      <div className="product-list">
-        {sortProducts(filteredProducts).map((product) => (
-          <div className="product" key={product.id}>
-            <img src={product.image} alt={product.title} />
-            <h2>{product.title}</h2>
-            <p>Price: ${product.price.toFixed(2)}</p>
-            <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
-          </div>
-        ))}
-      </div>
+      {items.map(item => (
+        <div key={item.id} className="catalog-item">
+          <img src={"https://pngfre.com/wp-content/uploads/apple-98-964x1024.png"} alt={item.name} className="catalog-item-image" />
+          <h3 className="catalog-item-name">{item.name}</h3>
+          <p className="catalog-item-description">{item.description}</p>
+          <p className="catalog-item-price">${item.price}</p>
+          <p className="catalog-item-quantity">Quantity: {item.quantity}</p>
+          <button onClick={() => addToCart(item)}>Add to Cart</button>
+        </div>
+      ))}
     </div>
   );
-}
-
+};
 
 export default Catalog;
