@@ -1,3 +1,5 @@
+/* Catalog.js */
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Catalog.css';
@@ -28,7 +30,7 @@ const Catalog = ({ addToCart }) => {
     <div className="catalog">
       {items.map(item => (
         <div key={item.id} className="catalog-item">
-          <img src={item.imgUrl} alt={item.name} className="catalog-item-image" />
+          <img src={item.imgURL} alt={item.name} className="catalog-item-image" />
           <h3 className="catalog-item-name">{item.name}</h3>
           <p className="catalog-item-description">{item.description}</p>
           <p className="catalog-item-price">${item.price}</p>
@@ -39,5 +41,6 @@ const Catalog = ({ addToCart }) => {
     </div>
   );
 };
+
 
 export default Catalog;
