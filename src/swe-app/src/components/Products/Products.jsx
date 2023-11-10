@@ -44,7 +44,7 @@ const Products = () => {
             <h1>Products</h1>
             { error && <div>{ error }</div> }
             { isPending && <div>Loading...</div> }
-            { products && <ProductsTable products={products} onDelete={onDelete}/>}
+            { products && <ProductsTable products={products} onDelete={onDelete} setProducts={setProducts}/>}
        </div>
     )
 }

@@ -14,6 +14,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 // function createData(customer, orderID, date, time, status) {
 //   return { customer, orderID, date, time, status };
@@ -120,7 +121,7 @@ export default function CustomersTable({ customers, onDelete }) {
                 </Dialog>
                 </TableCell>
                 <TableCell align="left">
-                  <Button variant="outlined" onClick={() => handleDelete(customer.id)}> { /* TODO: Add onClick functionality for deleting a customer */ }
+                  <Button variant="outlined" startIcon={<DeleteIcon />} onClick={() => handleDelete(customer.id)}> { /* TODO: Add onClick functionality for deleting a customer */ }
                     Delete
                   </Button>
                 </TableCell>
