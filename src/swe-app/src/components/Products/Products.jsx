@@ -8,7 +8,7 @@ const Products = () => {
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
-    // fetch data here
+    // fetch data here, populating list of products
     useEffect(() => {
         axios.get('/api/items') // insert API endpoint here
         .then((response) => {
@@ -26,12 +26,25 @@ const Products = () => {
         });
     }, []);
 
+    // API delete request
+    const onDelete = (itemId) => {
+        axios.delete(`/api/items/${itemId}`)
+        .then((response) => {
+            if(response.status === 200) {
+                setProducts(products.filter((product) => product.id !== itemId));
+            }
+        })
+        .catch((error) => {
+            console.error('Error deleting customer: ', error);
+        });
+    }
+
     return (
        <div className="Products">
             <h1>Products</h1>
             { error && <div>{ error }</div> }
             { isPending && <div>Loading...</div> }
-            { products && <ProductsTable products={products} />}
+            { products && <ProductsTable products={products} onDelete={onDelete}/>}
        </div>
     )
 }

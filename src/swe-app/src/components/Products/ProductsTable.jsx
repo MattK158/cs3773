@@ -13,26 +13,20 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import '../Table/Table.css';
+import axios from 'axios';
 
-// function createData(name, productID, quantity, category, price) {
-//   return { name, productID, quantity, category, price };
-// }
-
-// // needs to be dynamic
-// const rows = [
-//   createData("Ground Beef", "1", "10", "Grocery", "$10.00"),
-//   createData("Chicken Breast", "2", "27", "Grocery", "$7.00"),
-//   createData("Hershey Chocolate", "3", "55", "Grocery", "$0.99"),
-//   createData("Milk", "4", "10", "Grocery", "$2.00"),
-// ];
-
-
-
-export default function ProductsTable({ products }) {
+export default function ProductsTable({ products, onDelete }) {
   const [open, setOpen] = React.useState(false);
+  const [formData, setFormData] = React.useState({
+    name: '',
+    description: '',
+    id: '',
+    quantity: '',
+    category: '',
+    price: ''
+  });
   
   const handleModifyClickOpen = () => {
     setOpen(true);
@@ -42,7 +36,50 @@ export default function ProductsTable({ products }) {
     setOpen(false);
   };
   
-  
+  const handleDelete = (itemId) => {
+    onDelete(itemId);
+  };
+
+  const handleFormUpdate = (event) => {
+    event.preventDefault();
+    updateDataToServer(formData);
+  };
+
+  const updateDataToServer = (data) => {
+    axios.put(`/api/items/${data.id}`, data)
+    .then((response) => {
+      if(response.status === 200) {
+        console.log(response.data);
+      }
+    })
+    .catch((error) => {
+      console.error('Error updating product: ', error);
+
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error('Response data:', error.response.data);
+        console.error('Response status:', error.response.status);
+        console.error('Response headers:', error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('No response received, request:', error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error setting up the request:', error.message);
+      }
+    });
+    handleModifyClose();
+  };
+
+  const handleInputChange = ({ target }) => {
+    const { name, value } = target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value
+    }));
+  };
+
   return (
     <div className="Table" style={{ overflowY: 'scroll', maxHeight: '600px' }}>
       <TableContainer component={Paper} style={{ boxShadow: '0px 13px 20px #80808029' }}>
@@ -79,55 +116,89 @@ export default function ProductsTable({ products }) {
                     <TextField
                       autoFocus
                       margin="dense"
-                      id="productName"
+                      name='name'
+                      value={formData.name}
+                      id={`productName-${product.id}`}
                       label="Product Name"
                       type="text"
                       fullWidth
                       variant="standard"
+                      onChange={handleInputChange}
                     />
                     <TextField
                       autoFocus
                       margin="dense"
-                      id="productID"
+                      name='description'
+                      value={formData.description}
+                      id={`productDescription-${product.id}`}
+                      label="Product Description"
+                      type="text"
+                      fullWidth
+                      variant="standard"
+                      onChange={handleInputChange}
+                    />
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      name='id'
+                      value={formData.id}
+                      id={`productId-${product.id}`}
                       label="Product ID"
                       type="text"
                       fullWidth
                       variant="standard"
+                      onChange={handleInputChange}
                     />
                     <TextField
                       autoFocus
                       margin="dense"
-                      id="quantity"
+                      name='quantity'
+                      value={formData.quantity}
+                      id={`quantity-${product.id}`}
                       label="Product Quantity"
                       type="number"
                       fullWidth
                       variant="standard"
+                      onChange={handleInputChange}
                     />
                     <TextField
                       autoFocus
                       margin="dense"
-                      id="category"
+                      name='category'
+                      value={formData.category}
+                      id={`category-${product.id}`}
                       label="Product Category"
                       type="text"
                       fullWidth
                       variant="standard"
+                      onChange={handleInputChange}
                     />
                     <TextField
                       autoFocus
                       margin="dense"
-                      id="price"
+                      name='price'
+                      value={formData.price}
+                      id={`price-${product.id}`}
                       label="Product Price"
                       type="text"
                       fullWidth
                       variant="standard"
+                      onChange={handleInputChange}
                     />
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={handleModifyClose}>Cancel</Button>
+                    <Button onClick={handleModifyClose} style={{ position: 'absolute', top: 1, right: 1 }}>
+                      Cancel
+                    </Button>
+                    <Button onClick={handleFormUpdate}>Update</Button>
                     <Button onClick={handleModifyClose}>Delete</Button>
-                    <Button onClick={handleModifyClose}>Update</Button>
                   </DialogActions>
                 </Dialog>
+                </TableCell>
+                <TableCell align="left">
+                  <Button variant="outlined" onClick={() => handleDelete(product.id)}> { /* TODO: Add onClick functionality for deleting a customer */ }
+                    Delete
+                  </Button>
                 </TableCell>
                 </TableRow>
             ))}
