@@ -1,4 +1,8 @@
 /* Checkout.css */
+.checkout-main {
+    background-color: #fbd4d4;
+    display: flex;
+}
 
 /* Style the container for the form */
 .checkout-container {

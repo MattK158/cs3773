@@ -5,10 +5,27 @@ video {
     position: fixed;
     z-index: -1;
   }
+
+  .home-main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ffffff;
+  }
   
-  .hero-container {
-    background-color: #B5838D;
-    height: 100vh;
+  .welcome-banner {
+    /*background-color: #B5838D;
+    background: linear-gradient(
+      #FF9B54 29.63%,
+      #FF7F51 51.55%,
+      #CE4257 90.85%
+    );*/
+    background-image: url(https://images.unsplash.com/photo-1576398289164-c48dc021b4e1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -18,18 +35,77 @@ video {
     object-fit: contain;
   }
   
-  .hero-container > h1 {
-    color: #fff;
+  .welcome-banner > h1 {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: #ffffff;
     font-size: 100px;
-    margin-top: -100px;
+    letter-spacing: 10px;
+    font-weight: 700;
+    text-shadow: 4px 4px 4px #212121;
+    margin: 20% 0 14% 0;
   }
   
-  .hero-container > p {
-    margin-top: 8px;
-    color: #fff;
+  .welcome-banner > p {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: #ffffff;
     font-size: 32px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-      'Lucida Sans', Arial, sans-serif;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 2px #212121;
+  }
+
+  .category-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin: 3% 3% 2% 3%;
+    gap: 1.5%;
+  }
+
+  .category {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    width: 100%;
+  }
+
+  .category > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .category > p {
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 20px;
+    color: #212121;
+  }
+
+  .discount-box {
+    background-image: url(https://plus.unsplash.com/premium_photo-1681497591056-f1b2f008e418?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    width: 94%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    border-radius: 20px;
+    margin: 0 3% 3% 3%;
+  }
+
+  .discount-box > p {
+    text-align: left;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 35px;
+    word-spacing: 2px;
+    color: #ffffff;
+    font-weight: normal;
+    margin-left: 3%;
+    text-shadow: 2px 2px 2px #212121;
   }
   
   .hero-btns {
