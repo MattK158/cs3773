@@ -21,7 +21,8 @@ function Navbar() {
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                Home
+              <i class="fa-solid fa-house" style={{ marginRight: '8px' }}></i>
+               Home
               </Link>
             </li>
             <li>
@@ -30,6 +31,7 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
+                <i class="fa-solid fa-basket-shopping" style={{ marginRight: '8px' }}></i>
                 Catalog
               </Link>
             </li>
@@ -39,6 +41,7 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
+                <i class="fa-regular fa-credit-card" style={{ marginRight: '8px' }}></i>
                 Checkout
               </Link>
             </li>
@@ -48,6 +51,7 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
+                <i class="fa-solid fa-user" style={{ marginRight: '8px' }}></i>
                 Sign In
               </Link>
             </li>
@@ -58,6 +62,7 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
+                <i class="fa-solid fa-user" style={{ marginRight: '8px' }}></i>
                 Sign Up
               </Link>
             </li>
@@ -65,8 +70,8 @@ function Navbar() {
               <Link
                 to='/cart'
                 className='nav-links'
-                onClick={closeMobileMenu}
-              >
+                onClick={closeMobileMenu}>
+                <i class="fa-solid fa-cart-shopping" style={{ marginRight: '8px' }}></i>                
                 Cart
               </Link>
             </li>

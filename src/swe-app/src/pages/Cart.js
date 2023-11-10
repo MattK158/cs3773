@@ -2,9 +2,16 @@ import React from 'react';
 import './Cart.css';
 
 function Cart({ cart }) {
+  // Helper function to safely convert price to a fixed decimal string
   const toFixedPrice = (price) => {
-    return (typeof price === 'number' ? price.toFixed(2) : '0.00');
+    return (typeof price === 'number' && !isNaN(price) ? price.toFixed(2) : 'N/A');
   };
+
+  // Detailed logging for each product in the cart
+  console.log('Cart Items:', cart);
+  cart.forEach((product, index) => {
+    console.log(`Product ${index}: Price - ${product.price}, Type - ${typeof product.price}`);
+  });
 
   if (!cart || cart.length === 0) {
     return <div className="cart-empty">Your cart is empty.</div>;
@@ -16,11 +23,11 @@ function Cart({ cart }) {
       <div className="cart-items">
         {cart.map((product, index) => (
           <div className="cart-item" key={index}>
-            {/* Ensure the image URL is correctly referenced here */}
             <img src={product.imgURL || product.imgUrl} alt={product.name} className="cart-item-image" />
             <div className="cart-item-details">
               <h3 className="cart-item-name">{product.name}</h3>
-              <p className="cart-item-price">Price: ${toFixedPrice(product.price)}</p>
+              {/* Temporarily display the raw price value */}
+              <p className="cart-item-price">Price: ${product.price}</p>
             </div>
           </div>
         ))}

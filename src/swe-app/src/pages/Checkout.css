@@ -2,6 +2,9 @@
 .checkout-main {
     background-color: #fbd4d4;
     display: flex;
+    flex-direction: column; /* Align children vertically */
+    justify-content: center; /* Center children vertically */
+    min-height: 100vh; /* Full viewport height */
 }
 
 /* Style the container for the form */
@@ -78,3 +81,4 @@
 .checkout-container button:active {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
+
