@@ -1,14 +1,14 @@
 #catalog {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusts the number of columns based on the container width */
+  gap: 20px; /* Space between grid items */
+  justify-content: center; /* Center the grid */
+  padding: 20px; /* Optional: Adds some padding around the grid */
 }
 
 .catalog-item {
   border: 1px solid #ddd;
   padding: 10px;
-  width: 200px;
   text-align: center;
 }
 
@@ -26,7 +26,54 @@
   font-size: 0.9em;
   margin: 10px 0;
 }
+/* styles/catalog.css */
+.catalog {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
 
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+/* Apply styles to the product images */
+.product img {
+  max-width: 100%; /* Set the maximum width to ensure the image fits within the product container */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.sort-filter-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.sort-filter-section select, .sort-filter-section input {
+  padding: 5px;
+  margin: 0 10px;
+}
 .catalog-item-price {
   font-size: 1.1em;
   color: green;
