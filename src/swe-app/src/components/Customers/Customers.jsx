@@ -26,6 +26,7 @@ const Customers = () => {
         });
     }, []);
     
+    // API delete request
     const onDelete = (customerId) => {
         axios.delete(`/api/customers/${customerId}`)
         .then((response) => {
