@@ -2,6 +2,14 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import './Catalog.css';
 
+const Notification = ({ message }) => {
+  return (
+    <div className="notification">
+      {message}
+    </div>
+  );
+};
+
 const Catalog = ({ addToCart }) => {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
@@ -9,6 +17,7 @@ const Catalog = ({ addToCart }) => {
   const [error, setError] = useState(null);
   const [sortOrder, setSortOrder] = useState('price-asc');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [notification, setNotification] = useState({ show: false, message: '' });
 
   useEffect(() => {
     const apiUrl = 'http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/items';
@@ -56,11 +65,18 @@ const Catalog = ({ addToCart }) => {
     filterItemsByCategory(selectedCategory);
   }, [selectedCategory, filterItemsByCategory]);
 
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    setNotification({ show: true, message: `${item.name} added to cart!` });
+    setTimeout(() => setNotification({ show: false, message: '' }), 3000);
+  };
+
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: Could not load items. Please try again later.</div>;
 
   return (
     <div className="catalog">
+      {notification.show && <Notification message={notification.message} />}
       <div className="sort-filter-section">
         <select onChange={(e) => setSelectedCategory(e.target.value)}>
           <option value="All">All Categories</option>
@@ -83,7 +99,7 @@ const Catalog = ({ addToCart }) => {
             <h3 className="catalog-item-name">{item.name}</h3>
             <p className="catalog-item-description">{item.description}</p>
             <p className="catalog-item-price">${item.price}</p>
-            <button onClick={() => addToCart(item)}>Add to Cart</button>
+            <button onClick={() => handleAddToCart(item)} className="add-to-cart-btn">Add to Cart</button>
           </div>
         ))}
       </div>
