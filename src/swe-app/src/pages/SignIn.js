@@ -16,7 +16,13 @@ import Alert from '@mui/material/Alert';
 import axios from 'axios';
 
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  palette: {
+    background: {
+      default: '#eeeeee'
+    }
+  }
+});
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -65,14 +71,27 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          alignContent: 'center',
+        }}>
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 10,
+            width: '400px',
+            height: '500px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#ffffff',
+            borderRadius: '25px',
+            padding: '18px 25px',
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -133,6 +152,10 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
+<<<<<<< Updated upstream
+=======
+        <Copyright sx={{ mt: 10 }} />
+>>>>>>> Stashed changes
       </Container>
     </ThemeProvider>
   );

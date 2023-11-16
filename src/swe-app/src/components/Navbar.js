@@ -12,7 +12,7 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-          <img src={"https://cdn.discordapp.com/attachments/986188819592257546/1171881786872172664/logoV3.png?ex=655e4af6&is=654bd5f6&hm=859de9d33629b7a5a532899369c994a6ee9d73c9dc4c648efb5acf79520fe791&"} alt="Logo" style={{ width: 'auto', height: 'px' }}/>
+          <img src={"/assets/logo.png"} alt="Logo" style={{ width: 'auto', height: 'px' }}/>
             <i class='fab fa-typo3' />
           </Link>
           <div className='menu-icon' onClick={handleClick}>

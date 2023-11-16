@@ -1,29 +1,30 @@
 /* Checkout.css */
 .checkout-main {
-    background-color: #fbd4d4;
+    background-color: #eeeeee;
     display: flex;
     flex-direction: column; /* Align children vertically */
     justify-content: center; /* Center children vertically */
-    min-height: 100vh; /* Full viewport height */
+    align-items: center; /* Center children horizontally */
+    min-height: 90vh; /* 90% of viewport height */
 }
 
 /* Style the container for the form */
 .checkout-container {
     width: 100%;
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
+    max-width: 350px;
+    padding: 18px 25px;
+    background-color: #ffffff;
+    border-radius: 25px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Style the heading */
 .checkout-container h2 {
-    color: #333;
+    color: #212121;
+    font-family: "Arial Black", Gadget, sans-serif;
     font-size: 24px;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 /* Style each form field */
@@ -43,14 +44,17 @@
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #ffffff;
+    border-bottom: 1px solid #888888;
     box-sizing: border-box; /* Include padding and border in the element's width and height */
 }
 
 /* Style the placeholder for card expiry */
 .checkout-container input::placeholder {
-    color: #888;
+    color: #494949;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
 }
 
 /* Highlight input fields on focus */
@@ -64,17 +68,19 @@
     width: 100%;
     padding: 12px 20px;
     border: none;
-    border-radius: 4px;
-    background-color: #5cb85c;
+    border-radius: 25px;
+    background-color: #c61f1f;
     color: white;
+    font-family: Tahoma, Geneva, sans-serif;
     font-size: 16px;
+    letter-spacing: 0.5px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 /* Change the background color of the button on hover */
 .checkout-container button:hover {
-    background-color: #4cae4c;
+    background-color: #a11818;
 }
 
 /* Add a box shadow on button click */

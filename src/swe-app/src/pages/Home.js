@@ -11,24 +11,24 @@ function Home() {
       </div>
       <div className='category-display'>
         <a href="/catalog" className='category'>
-          <img src='https://cdn.discordapp.com/attachments/986188819592257546/1171974157626527834/category_produce.png' alt="Produce" className="category-image" />
+          <img src='/assets/category_produce.png' alt="Produce" className="category-image" />
           <p>Produce</p>
         </a>
         <a href="/catalog" className='category'>
-          <img src='https://cdn.discordapp.com/attachments/986188819592257546/1171910477803175968/category_grocery.png' alt="Grocery" className="category-image" />
+          <img src='/assets/category_grocery.png' alt="Grocery" className="category-image" />
           <p>Grocery</p>
         </a>
         <a href="/catalog" className='category'>
-          <img src='https://cdn.discordapp.com/attachments/986188819592257546/1171910476830089246/category_bakery.png' alt="Bakery" className="category-image" />
+          <img src='/assets/category_bakery.png' alt="Bakery" className="category-image" />
           <p>Bakery</p>
         </a>
         <a href="/catalog" className='category'>
-          <img src='https://cdn.discordapp.com/attachments/986188819592257546/1171910477283078185/category_genmerch.png' alt="General Merchandise" className="category-image" />
+          <img src='/assets/category_genmerch.png' alt="General Merchandise" className="category-image" />
           <p>General Merchandise</p>
         </a>
       </div>
       <div className='discount-box'>
-        <p>Use DISCOUNT for $10 off your first order</p>
+        <p>Use DISCOUNT for 10% off your first order</p>
       </div>
     </div>
   );
