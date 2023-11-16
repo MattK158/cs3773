@@ -66,10 +66,20 @@ const Catalog = ({ addToCart }) => {
   }, [selectedCategory, filterItemsByCategory]);
 
   const handleAddToCart = (item) => {
+    axios.post('http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/shoppingCarts', {
+      customerId: 1, // Replace with actual customer ID
+      itemId: item.id
+    }).then(response => {
+      console.log('Item added to cart:', response.data);
+      setNotification({ show: true, message: `${item.name} added to cart!` });
+      setTimeout(() => setNotification({ show: false, message: '' }), 3000);
+    }).catch(error => {
+      console.error('Error adding item to cart:', error);
+    });
+
     addToCart(item);
-    setNotification({ show: true, message: `${item.name} added to cart!` });
-    setTimeout(() => setNotification({ show: false, message: '' }), 3000);
   };
+
 
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: Could not load items. Please try again later.</div>;

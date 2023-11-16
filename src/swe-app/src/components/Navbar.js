@@ -76,7 +76,7 @@ function Navbar() {
               </Link>
             </li>
             
-            <li>
+            {/* <li>
               <Link
                 to='/admin'
                 className='nav-links'
@@ -84,7 +84,7 @@ function Navbar() {
               >
                 Admin
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>

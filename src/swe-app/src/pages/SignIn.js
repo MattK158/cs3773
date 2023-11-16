@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,33 +12,56 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import axios from 'axios';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        CodeCart
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  const requestBody = {
+    email: email,  // Use the email state
+    password: password  // Use the password state
   };
+
+  const url = 'http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/customerLogin';
+
+  try {
+    const response = await axios.post(url, requestBody);
+    console.log('Response:', response.data);
+
+    if (response.data.status === 'LOGIN_SUCCEEDED') {
+      setMessage('Login successful');
+      setIsSuccess(true);
+    } else {
+      // Handle other statuses or unexpected responses
+      setMessage('Login failed');
+      setIsSuccess(false);
+    }
+  } 
+  catch (error) {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      setMessage(error.response.data.message);
+    } else if (error.request) {
+      // The request was made but no response was received
+      setMessage("Network error: Please check your internet connection.");
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      setMessage("Error: " + error.message);
+    }
+    setIsSuccess(false);
+  }
+};
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -68,6 +91,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -78,17 +103,19 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            {message && <Alert severity={isSuccess ? 'success' : 'error'}>{message}</Alert>}
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              href='/'
             >
               Sign In
             </Button>
@@ -106,7 +133,6 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
