@@ -48,9 +48,12 @@ const Catalog = ({ addToCart }) => {
     setFilteredItems(sortedItems);
   }, [filteredItems]);
 
+
+  // changing the useEffect below since it is probably causing the infinite loop
+  // the dependency array used to hold [sortOrder, sortItems] but sortItems is a function
   useEffect(() => {
     sortItems(sortOrder);
-  }, [sortOrder, sortItems]);
+  }, [sortOrder]);
 
   const filterItemsByCategory = useCallback((category) => {
     if (category === 'All') {
@@ -66,7 +69,7 @@ const Catalog = ({ addToCart }) => {
   }, [selectedCategory, filterItemsByCategory]);
 
   const handleAddToCart = (item) => {
-    axios.post('http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/shoppingCarts', {
+    axios.post('/api/shoppingCarts', {
       customerId: 1, // Replace with actual customer ID
       itemId: item.id
     }).then(response => {

@@ -3,35 +3,51 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Cart.css';
 
-function Cart({ cart, userId }) {
+function Cart({ cart, setCart, userId }) {
   const SALES_TAX_RATE = 0.0825;
   const subtotal = cart.reduce((acc, product) => acc + (Number(product.price) || 0), 0);
   const tax = subtotal * SALES_TAX_RATE;
   const total = subtotal + tax;
-  const [cartItems, setCartItems] = useState([]);
-  useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        const response = await axios.get(`http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/shoppingCarts/1`);
-        setCartItems(response.data);
-      } catch (error) {
-        console.error('Error fetching cart items:', error);
-      }
-    };
+  // dont think we need this state variable below anymore:
+  // const [cartItems, setCartItems] = useState([]);
+  // useEffect(() => {
+  //   const fetchCartItems = async () => {
+  //     try {
+  //       const response = await axios.get('/api/shoppingCarts/1');
+  //       console.log('Cart Items:', response.data);
+  //       setCartItems(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching cart items:', error);
+  //     }
+  //   };
 
-    if (userId) {
-      fetchCartItems();
-    }
-  }, [userId]);
+  //   if (userId) {
+  //     console.log('Fetching cart items for user ID:', userId);
+  //     fetchCartItems();
+  //   }
+  // }, [userId]);
+
+
+  // Josh's code:
+  useEffect(() => {
+    axios.get('/api/shoppingCarts/1')
+      .then((response) => {
+        console.log('Cart Items:', response.data.itemsInCart);
+        setCart(response.data.itemsInCart);
+      })
+      .catch((error) => {
+        console.error('Error fetching data: ', error);
+      });
+  }, []);
 
   const toFixedPrice = (price) => {
     return (typeof price === 'number' && !isNaN(price) ? price.toFixed(2) : 'N/A');
   };
 
-  console.log('Cart Items:', cart);
-  cart.forEach((product, index) => {
-    console.log(`Product ${index}: Price - ${product.price}, Type - ${typeof product.price}`);
-  });
+  // console.log('Cart Items (using cart variable):', cart);
+  // cart.forEach((product, index) => {
+  //   console.log(`Product ${index}: Price - ${product.price}, Type - ${typeof product.price}`);
+  // });
 
   // if (!cart || cart.length === 0) {
   //   return <div className="cart-empty">Your cart is empty.</div>;

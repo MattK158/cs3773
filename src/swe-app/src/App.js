@@ -26,7 +26,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/catalog" element={<Catalog addToCart={addToCart} />} />
-        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
