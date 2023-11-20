@@ -13,20 +13,18 @@
   transform: translate(-50%, -50%);
 }
 
-
-
 .cart-container {
   width: 80%;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
-  background-color: #f8f9fa;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cart-container h1 {
-  color: #333;
+  font-family: "Arial Black", Gadget, sans-serif;
+  color: #212121;
   margin-bottom: 20px;
 }
 
@@ -38,11 +36,14 @@
 
 .cart-item {
   display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
   align-items: center;
-  border: 1px solid #ddd;
+  margin: 0 20%;
+  border: 1px solid #fff;
   padding: 10px;
   border-radius: 8px;
-  background-color: white;
 }
 
 .cart-item-image {
@@ -53,21 +54,38 @@
 }
 
 .cart-item-details {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+}
+
+.cart-item-text {
+  display: flex;
+  flex-direction: column;
   text-align: left;
 }
 
 .cart-item-name {
+  font-family: "Arial Black", Gadget, sans-serif;
   font-size: 1.2em;
   margin-bottom: 5px;
-  color: #007bff;
+  color: #212121;
 }
 
 .cart-item-price {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 1em;
+  color: #555;
+}
+
+.cart-summary {
+  font-family: Tahoma, Geneva, sans-serif;
   font-size: 1em;
   color: #555;
 }
 
 .cart-total {
+  font-family: "Arial Black", Gadget, sans-serif;
   font-size: 1.2em;
   font-weight: bold;
   margin-top: 20px;
@@ -81,8 +99,9 @@
 }
 
 .back-to-catalog {
+  font-family: Tahoma, Geneva, sans-serif;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #DB0000;
   color: white;
   border: none;
   border-radius: 4px;
@@ -92,20 +111,19 @@
 }
 
 .back-to-catalog:hover {
-  background-color: #0056b3;
+  background-color: #B30000;
 }
 
 /* Additional styling for buttons */
 button {
-  background-color: #dc3545;
+  background-color: #DB0000;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 20px;
 }
 
 button:hover {
-  background-color: #c82333;
+  background-color: #B30000;
 }
