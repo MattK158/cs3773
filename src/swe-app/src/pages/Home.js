@@ -1,12 +1,19 @@
 import React from 'react';
 import '../App.css';
 import './Home.css';
+import { useUser } from '../UserContext';
 
 function Home() {
+  const { user, signIn, signOut } = useUser();
+  console.log('User:', user);
   return (
     <div className='home-main'>
       <div className='welcome-banner'>
-        <h1>Welcome!</h1>
+        {user ? (
+          <h1>Hello {user.firstName}!</h1>
+        ) : (
+          <h1>Welcome!</h1>
+        )}
         <p>What are you looking for?</p>
       </div>
       <div className='category-display'>

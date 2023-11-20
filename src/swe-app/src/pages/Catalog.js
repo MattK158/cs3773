@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import './Catalog.css';
+import { useUser } from '../UserContext';
 
 const Notification = ({ message }) => {
   return (
@@ -11,6 +12,7 @@ const Notification = ({ message }) => {
 };
 
 const Catalog = ({ addToCart }) => {
+  const { user, signIn, signOut } = useUser();
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,6 +20,8 @@ const Catalog = ({ addToCart }) => {
   const [sortOrder, setSortOrder] = useState('price-asc');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [notification, setNotification] = useState({ show: false, message: '' });
+
+  console.log('User:', user);
 
   useEffect(() => {
     const apiUrl = 'http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/items';
@@ -70,7 +74,7 @@ const Catalog = ({ addToCart }) => {
 
   const handleAddToCart = (item) => {
     axios.post('/api/shoppingCarts', {
-      customerId: 1, // Replace with actual customer ID
+      customerId: user.custId, // Replace with actual customer ID
       itemId: item.id
     }).then(response => {
       console.log('Item added to cart:', response.data);

@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Cart from './pages/Cart';
 import Admin from './pages/Admin';
+import { UserProvider } from './UserContext';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -18,18 +19,20 @@ function App() {
   };
 
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/catalog" element={<Catalog addToCart={addToCart} />} />
-        <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
-    </Router>
+    <UserProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/catalog" element={<Catalog addToCart={addToCart} />} />
+          <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </Router>
+    </UserProvider>
   );
 }
 
