@@ -1,16 +1,18 @@
 /* General Styles */
 .catalog {
   text-align: center;
-  background-color: #fbd4d4;
+  background-color: #fff;
+  height: auto;
   padding: 20px;
 }
 
 /* Grid Layout for Products */
 .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-items: center;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  justify-content: center;
 }
 
 /* Product Card Design */
@@ -21,7 +23,6 @@
   align-items: center;
   background-color: #fff;
   border: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   border-radius: 25px;
   overflow: hidden;
   padding-bottom: 15px;
@@ -91,16 +92,33 @@ button:hover {
 /* Sort and Filter Section */
 .sort-filter-section {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.sort-filter-section select, .sort-filter-section input {
+.sort-filter-section input {
+  width: 500px;
   font-family: Tahoma, Geneva, sans-serif;
   padding: 10px;
   margin: 0 10px;
+  border: 1px solid #fff;
+  border-bottom: 1px solid #000;
+}
+
+.sort-filter-section input::placeholder {
+  color: #494949;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+}
+
+.sort-filter-section select {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  padding: 10px;
+  margin: 0 10px;
   border-radius: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #fff;
 }
 
 /* Notification Styles */
@@ -132,5 +150,5 @@ button:hover {
   font-size: 12px;
   margin: 0 auto; /* Centers the button */
   display: block; /* Makes margin auto effective */
-  border-radius: 10px;
+  border-radius: 5px;
 }

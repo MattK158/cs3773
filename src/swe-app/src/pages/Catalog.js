@@ -95,12 +95,15 @@ const Catalog = ({ addToCart }) => {
     <div className="catalog">
       {notification.show && <Notification message={notification.message} />}
       <div className="sort-filter-section">
+        <div className="search-bar">
+          <input type="text" placeholder="Search..." name="search"></input>
+        </div>
         <select onChange={(e) => setSelectedCategory(e.target.value)}>
           <option value="All">All Categories</option>
           <option value="Produce">Produce</option>
-          <option value="Confection">Confection</option>
-          <option value="Soft Drinks">Soft Drinks</option>
           <option value="Grocery">Grocery</option>
+          <option value="Bakery">Bakery</option>
+          <option value="General Merchandise">General Merchandise</option>
         </select>
         <select onChange={(e) => setSortOrder(e.target.value)}>
           <option value="price-asc">Price Ascending</option>
