@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Cart.css';
+import { useUser } from '../UserContext';
 
 function Cart({ cart, setCart, userId }) {
+  const { user, signIn, signOut } = useUser();
   const SALES_TAX_RATE = 0.0825;
   const subtotal = cart.reduce((acc, product) => acc + (Number(product.price) || 0), 0);
   const tax = subtotal * SALES_TAX_RATE;
@@ -30,7 +32,8 @@ function Cart({ cart, setCart, userId }) {
 
   // Josh's code:
   useEffect(() => {
-    axios.get('/api/shoppingCarts/1')
+    // old endpoint: '/api/shoppingCarts/1'
+    axios.get(`/api/shoppingCarts/${user.custId}`) // `/api/shoppingCarts/${user.customerId}` - hopefully new endpoint works
       .then((response) => {
         console.log('Cart Items:', response.data.itemsInCart);
         setCart(response.data.itemsInCart);

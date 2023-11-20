@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
+import { useUser } from '../UserContext';
 
 const defaultTheme = createTheme({
   palette: {
@@ -24,6 +25,7 @@ const defaultTheme = createTheme({
 });
 
 export default function SignIn() {
+  const { user, signIn, signOut } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -37,16 +39,20 @@ export default function SignIn() {
       password: password, // Use the password state
     };
 
-    const url =
-      "http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/customerLogin";
+    // const url =
+    //   "http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/customerLogin";
 
     try {
-      const response = await axios.post(url, requestBody);
+      const response = await axios.post('/api/customerLogin', requestBody);
       console.log("Response:", response.data);
 
       if (response.data.status === "LOGIN_SUCCEEDED") {
         setMessage("Login successful");
         setIsSuccess(true);
+        signIn(response.data.customerDto.id, response.data.customerDto.firstName, response.data.customerDto.lastName, response.data.customerDto.email);
+        console.log("Response Data:", response.data);
+        console.log("User id:", user.id);
+        console.log("this is after user ID");
       } else {
         // Handle other statuses or unexpected responses
         setMessage("Login failed");
@@ -69,101 +75,110 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container
-        component="main"
-        maxWidth="xs"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          alignContent: "center",
-        }}
-      >
-        <CssBaseline />
-        <Box
+    <div>
+      {user ? (
+        <div>
+          <h1>Welcome, {user.firstName}!</h1>
+          {/* <button onClick={handleSignOut}>Sign Out</button> */} {/* Need to do */}
+        </div>
+      ) : (
+      <ThemeProvider theme={defaultTheme}>
+        <Container
+          component="main"
+          maxWidth="xs"
           sx={{
-            marginTop: 10,
-            width: "400px",
-            height: "500px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#ffffff",
-            borderRadius: "25px",
-            padding: "18px 25px",
+            alignContent: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign In
-          </Typography>
+          <CssBaseline />
           <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+            sx={{
+              marginTop: 10,
+              width: "400px",
+              height: "500px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#ffffff",
+              borderRadius: "25px",
+              padding: "18px 25px",
+            }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            {message && (
-              <Alert severity={isSuccess ? "success" : "error"}>
-                {message}
-              </Alert>
-            )}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
               Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+            </Typography>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 1 }}
+            >
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              {message && (
+                <Alert severity={isSuccess ? "success" : "error"}>
+                  {message}
+                </Alert>
+              )}
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="/signup" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        </Container>
+      </ThemeProvider>
+      )}
+    </div>
   );
 }
