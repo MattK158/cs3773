@@ -62,12 +62,15 @@ function Cart({ cart, setCart, userId }) {
       <div className="cart-items">
         {cart.map((product, index) => (
           <div className="cart-item" key={index}>
-            <img src={product.imgURL || product.imgUrl} alt={product.name} className="cart-item-image" />
             <div className="cart-item-details">
-              <h3 className="cart-item-name">{product.name}</h3>
-              {/* Temporarily display the raw price value */}
-              <p className="cart-item-price">Price: ${product.price}</p>
+            <img src={product.imgURL || product.imgUrl} alt={product.name} className="cart-item-image" />
+              <div className="cart-item-text">
+                <h3 className="cart-item-name">{product.name}</h3>
+                {/* Temporarily display the raw price value */}
+                <p className="cart-item-price">Price: ${product.price}</p>
+              </div>
             </div>
+            <button type="submit">Remove</button>
           </div>
         ))}
       </div>
@@ -77,13 +80,8 @@ function Cart({ cart, setCart, userId }) {
         <p className="cart-total">Total: ${toFixedPrice(total)}</p>
       </div>
       <div className="back-to-catalog-container">
-      <Link
-                to='/catalog' className="back-to-catalog">
-                Catalog
-              </Link>
-      <a className="back-to-catalog" href="/checkout">
-        Checkout
-      </a>
+      <Link to='/catalog' className="back-to-catalog">Catalog</Link>
+      <a className="back-to-catalog" href="/checkout">Checkout</a>
       </div>
     </div>
   );
