@@ -13,19 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        CodeCart
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import './SignUp.css';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -62,27 +50,17 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignContent: 'center',
-      }}>
+      <Container
+        className="sign-up-main" 
+        component="main" 
+        maxWidth="xs"
+        sx={{
+        }}
+      >
         <CssBaseline />
-        <Box
+        <Box 
+          className="sign-up-box"
           sx={{
-            marginTop: 10,
-            width: '400px',
-            height: '500px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#ffffff',
-            borderRadius: '25px',
-            padding: '18px 25px',
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -160,7 +138,6 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 10 }} />
       </Container>
     </ThemeProvider>
   );
