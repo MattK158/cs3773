@@ -69,10 +69,10 @@ function Cart({ cart, setCart, userId }) {
           </div>
         ))}
       </div>
-      <div className="cart-summary">
+      <div className="cart-subtotal-tax">
         <p>Subtotal: ${toFixedPrice(subtotal)}</p>
         <p>Tax: ${toFixedPrice(tax)}</p>
-        <p className="cart-total">Total: ${toFixedPrice(total)}</p>
+        <h3 className="cart-total">Total: ${toFixedPrice(total)}</h3>
       </div>
       <div className="back-to-catalog-container">
       <Link to='/catalog' className="back-to-catalog">Catalog</Link>
