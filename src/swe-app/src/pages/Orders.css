@@ -1,0 +1,76 @@
+/* OrderSummary.css */
+
+.ordersummary-main {
+    background-color: #F08D89;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: fit-content;
+    padding: 2% 5%;
+    gap: 30px;
+}
+
+.ordersummary-main h1 {
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 30px;
+    color: #28a745;
+}
+
+.ordersummary-main h2 {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 20px;
+    color: #212121;
+}
+
+.ordersummary-main h3 {
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 20px;
+    color: #28a745;
+}
+
+.ordersummary-main h4 {
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 18px;
+    color: #212121;
+}
+
+.ordersummary-main p {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 16px;
+}
+
+.ordersummary-inner {
+    background-color: #fff;
+    padding: 2% 5%;
+    border-radius: 25px;
+    gap: 30px;
+}
+
+.order-num {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.pickup-time {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.ordersummary-body {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+}
+
+.item-display-box {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+}

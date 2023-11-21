@@ -131,9 +131,6 @@ const Checkout = () => {
                         <input type="text" name="cardCVV" placeholder="Card CVV" value={formData.cardCVV} onChange={handleChange} required />
                     </div>
                     <div>
-                        <input type="text" name="discountCode" placeholder="Discount Code" /*value={formData.cardCVV} onChange={handleChange} required*/ />
-                    </div>
-                    <div>
                         <button type="submit" href="/orders" className="complete-checkout-button">Complete Checkout</button>
                     </div>
                 </form>

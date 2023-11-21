@@ -33,26 +33,35 @@ const OrderSummary = () => {
     return (
         <div className='ordersummary-main'>
             {orders.map((order) => (
+                
+            <div className='ordersummary-inner'>
                 <div key={order.id} className='order'>
                     <div className='ordersummary-header'>
-                        <h2>Order successfully placed!</h2>
-                        <h1>Order Summary</h1>
-                        <h1>{"Order ID: " + order.id}</h1>
-                        <h1>{"Order Pickup Time: " + order.pickupTime}</h1>
+                    <h1>Thank you for your order</h1>
+                    <div className='order-num'>
+                        <h2>{"Order number:"}</h2>
+                        <p>{order.id}</p>
+                    </div>
+                    <div className='pickup-time'>
+                        <h2>{"Pickup Time:"}</h2>
+                        <p>{order.pickupTime}</p>
                     </div>
                     <div className='ordersummary-body'>
-                        {order.orderSummaryDto.orderItemsInCart.map((item) => (
-                            <div className='item' key={item.id}>
-                                <h3 className='item-name'>{item.name}</h3>
-                                <p className='item-price'>{"$" + item.priceAtPurchase}</p>
-                            </div>
-                        ))}
+                    {order.orderSummaryDto.orderItemsInCart.map((item) => (
+                        <div className='item-display-box' key={item.id}>
+                            <h4 className='item-name'>{item.name}</h4>
+                            <p className='item-price'>{"$" + item.priceAtPurchase}</p>
+                        </div>
+                    ))}
                     </div>
                     <div className="cart-summary">
-                        <p>Order Total: ${order.orderSummaryDto.totalPrice}</p>
+                        <h3>Total: ${order.orderSummaryDto.totalPrice}</h3>
                     </div>
                 </div>
+                </div>
+                </div>
             ))}
+            
         </div>
     );
 }
