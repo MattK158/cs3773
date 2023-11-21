@@ -103,6 +103,15 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
+                to='/orders'
+                className='nav-links'
+                onClick={closeMobileMenu}>
+                <i class="fa-solid fa-cart-shopping" style={{ marginRight: '8px' }}></i>                
+                Orders
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
                 to='/signin'
                 className='nav-links'
                 onClick={() => {

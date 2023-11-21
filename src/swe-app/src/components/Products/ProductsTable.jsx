@@ -18,7 +18,7 @@ import "../Table/Table.css";
 import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export default function ProductsTable({ products, onDelete, }) {
+export default function ProductsTable({ products, onDelete, setProducts }) {
   const [openModifyDialog, setOpenModifyDialog] = React.useState(false);
   const [openAddProductDialog, setOpenAddProductDialog] = React.useState(false);
   const [updateFormData, setUpdateFormData] = React.useState({
@@ -60,7 +60,6 @@ export default function ProductsTable({ products, onDelete, }) {
   };
 
   const handleFormSubmit = (event) => {
-    event.preventDefault();
     addDataToServer(addFormData);
   };
 
@@ -109,19 +108,7 @@ export default function ProductsTable({ products, onDelete, }) {
       })
       .catch((error) => {
         console.error("Error updating product: ", error);
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.error("Response data:", error.response.data);
-          console.error("Response status:", error.response.status);
-          console.error("Response headers:", error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.error("No response received, request:", error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.error("Error setting up the request:", error.message);
-        }
+        // Handle error response
       });
     handleModifyClose();
   };
@@ -337,18 +324,6 @@ export default function ProductsTable({ products, onDelete, }) {
             variant="standard"
             onChange={handleAddInputChange}
           />
-          {/* <TextField
-              autoFocus
-              margin="dense"
-              name='id'
-              value={addFormData.id}
-              id={`productId`}
-              label="Product ID"
-              type="text"
-              fullWidth
-              variant="standard"
-              onChange={handleAddInputChange}
-            /> */}
           <TextField
             autoFocus
             margin="dense"
@@ -405,7 +380,10 @@ export default function ProductsTable({ products, onDelete, }) {
           >
             Cancel
           </Button>
-          <Button variant="contained" onClick={handleFormSubmit}>
+          <Button variant="contained" onClick={() => {
+            handleFormSubmit();
+            handleAddClose();
+          }}>
             Add
           </Button>
         </DialogActions>

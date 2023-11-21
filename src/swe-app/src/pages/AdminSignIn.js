@@ -52,10 +52,7 @@ export default function SignIn() {
       if (response.data.status === "LOGIN_SUCCEEDED") {
         setMessage("Login successful");
         setIsSuccess(true);
-        // signIn(response.data.customerDto.id, response.data.customerDto.firstName, response.data.customerDto.lastName, response.data.customerDto.email);
-        // console.log("Response Data:", response.data);
-        // console.log("User id:", user.custId);
-        // console.log("this is after user ID");
+        navigate("/admin"); // Redirect to the home page
       } else {
         // Handle other statuses or unexpected responses
         setMessage("Login failed");
@@ -74,9 +71,7 @@ export default function SignIn() {
         setMessage("Error: " + error.message);
       }
       setIsSuccess(false);
-      navigate("/admin"); // Redirect to the home page
     }
-    navigate("/admin"); // Redirect to the home page
   };
 
   return (
