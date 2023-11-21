@@ -57,11 +57,11 @@ export default function OrdersTable({ orders }) {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {order.customer}
+                  {order.customerId}
                 </TableCell>
-                <TableCell align="left">{order.orderID}</TableCell>
-                <TableCell align="left">{order.date}</TableCell>
-                <TableCell align="left">{order.time}</TableCell>
+                <TableCell align="left">{order.id}</TableCell>
+                <TableCell align="left">{order.orderDate}</TableCell>
+                <TableCell align="left">{order.pickupTime}</TableCell>
                 <TableCell align="left">
                   <span className="status" style={makeStyles(order.status)}>
                     {order.status}

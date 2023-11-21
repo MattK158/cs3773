@@ -16,7 +16,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useUser } from '../UserContext';
-import './SignIn.css';
 
 const defaultTheme = createTheme({
   palette: {
@@ -46,16 +45,16 @@ export default function SignIn() {
     //   "http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/customerLogin";
 
     try {
-      const response = await axios.post('/api/customerLogin', requestBody);
+      const response = await axios.post('/api/administratorLogin', requestBody);
       console.log("Response:", response.data);
 
       if (response.data.status === "LOGIN_SUCCEEDED") {
         setMessage("Login successful");
         setIsSuccess(true);
-        signIn(response.data.customerDto.id, response.data.customerDto.firstName, response.data.customerDto.lastName, response.data.customerDto.email);
-        console.log("Response Data:", response.data);
-        console.log("User id:", user.custId);
-        console.log("this is after user ID");
+        // signIn(response.data.customerDto.id, response.data.customerDto.firstName, response.data.customerDto.lastName, response.data.customerDto.email);
+        // console.log("Response Data:", response.data);
+        // console.log("User id:", user.custId);
+        // console.log("this is after user ID");
       } else {
         // Handle other statuses or unexpected responses
         setMessage("Login failed");
@@ -74,36 +73,45 @@ export default function SignIn() {
         setMessage("Error: " + error.message);
       }
       setIsSuccess(false);
-      navigate("/"); // Redirect to the home page
+      navigate("/admin"); // Redirect to the home page
     }
+    navigate("/admin"); // Redirect to the home page
   };
 
   return (
     <div>
-      {user ? (
-        <div className="signed-in">
-          <h1>Welcome, {user.firstName}!</h1>
-          {/* <button onClick={handleSignOut}>Sign Out</button> */} {/* Need to do */}
-        </div>
-      ) : (
       <ThemeProvider theme={defaultTheme}>
         <Container
-          className="sign-in-main"
           component="main"
           maxWidth="xs"
           sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            alignContent: "center",
           }}
         >
           <CssBaseline />
-          <Box className="sign-in-box"
+          <Box
             sx={{
+              marginTop: 10,
+              width: "400px",
+              height: "500px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#ffffff",
+              borderRadius: "25px",
+              padding: "18px 25px",
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Customer Sign In
+              Admin Sign In
             </Typography>
             <Box
               component="form"
@@ -168,7 +176,6 @@ export default function SignIn() {
           </Box>
         </Container>
       </ThemeProvider>
-      )}
     </div>
   );
 }

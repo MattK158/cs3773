@@ -1,12 +1,48 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { useUser } from '../UserContext';
 
 function Navbar() {
   const [click, setClick] = useState(false);
+  const { user, signIn, signOut } = useUser();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  if (!user) {
+    return (
+      <>
+        <nav className='navbar'>
+          <div className='navbar-container'>
+            <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+              <li className='nav-item'>
+                <Link
+                  to='/signin'
+                  className='nav-links'
+                  onClick={closeMobileMenu}
+                >
+                  <i class="fa-solid fa-user" style={{ marginRight: '8px' }}></i>
+                  Customer Sign-In
+                </Link>
+              </li>
+              <li>
+              <Link
+                  to='/adminsignin'
+                  className='nav-links'
+                  onClick={closeMobileMenu}
+                >
+                  <i class="fa-solid fa-user" style={{ marginRight: '8px' }}></i>
+                  Admin Sign-In
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </>
+    )
+  }
+  
   return (
     <>
       <nav className='navbar'>
@@ -45,18 +81,8 @@ function Navbar() {
                 Checkout
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
-                to='/signin'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                <i class="fa-solid fa-user" style={{ marginRight: '8px' }}></i>
-                Sign In
-              </Link>
-            </li>
 
-            <li>
+            {/* <li>
               <Link
                 to='/signup'
                 className='nav-links'
@@ -65,7 +91,7 @@ function Navbar() {
                 <i class="fa-solid fa-user" style={{ marginRight: '8px' }}></i>
                 Sign Up
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 to='/cart'
@@ -73,6 +99,19 @@ function Navbar() {
                 onClick={closeMobileMenu}>
                 <i class="fa-solid fa-cart-shopping" style={{ marginRight: '8px' }}></i>                
                 Cart
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/signin'
+                className='nav-links'
+                onClick={() => {
+                  signOut();
+                  closeMobileMenu();
+                }}
+              >
+                <i class="fa-solid fa-user" style={{ marginRight: '8px' }}></i>
+                Sign Out
               </Link>
             </li>
             

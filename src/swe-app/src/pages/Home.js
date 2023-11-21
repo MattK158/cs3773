@@ -6,6 +6,12 @@ import { useUser } from '../UserContext';
 function Home() {
   const { user, signIn, signOut } = useUser();
   console.log('User:', user);
+
+  // if (!user) {
+  //   window.location.href = '/signin'; // Redirect to sign in page
+  //   return null;
+  // }
+
   return (
     <div className='home-main'>
       <div className='welcome-banner'>
@@ -40,5 +46,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;

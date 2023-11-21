@@ -28,6 +28,7 @@ export default function ProductsTable({ products, onDelete, }) {
     quantity: "",
     category: "",
     price: "",
+    discount: "",
   });
   const [addFormData, setAddFormData] = React.useState({
     name: "",
@@ -250,6 +251,18 @@ export default function ProductsTable({ products, onDelete, }) {
                           value={updateFormData.price}
                           id={`price-${product.id}`}
                           label="Product Price"
+                          type="text"
+                          fullWidth
+                          variant="standard"
+                          onChange={handleModifyInputChange}
+                        />
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          name="discount"
+                          value={updateFormData.discount}
+                          id={`discount-${product.id}`}
+                          label="Product Discount"
                           type="text"
                           fullWidth
                           variant="standard"

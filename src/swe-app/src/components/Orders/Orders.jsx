@@ -33,6 +33,26 @@ const Orders = () => {
   }, []);
 
   // TODO: sort orders by date, last name, or dollar amount based on which radio button is selected
+  const handleSort = (event) => {
+    const criteria = event.target.value;
+    let sortedOrders = [];
+
+    if (criteria === "date") {
+      sortedOrders = [...orders].sort((a, b) => {
+        return new Date(a.orderDate) - new Date(b.orderDate);
+      });
+    } else if (criteria === "customerId") {
+      sortedOrders = [...orders].sort((a, b) => {
+        return a.customerId - b.customerId;
+      });
+    } else if (criteria === "dollarAmount") {
+      sortedOrders = [...orders].sort((a, b) => {
+        return a.orderSummaryDto.totalPrice - b.orderSummaryDto.totalPrice;
+      });
+    }
+
+    setOrders(sortedOrders);
+  };
 
   return (
     <div className="Orders">
@@ -43,10 +63,10 @@ const Orders = () => {
           row
           aria-labelledby="orderSort"
           name="row-radio-buttons-group"
-        //   add onChange handler here
+          onChange={handleSort}
         >
           <FormControlLabel value="date" control={<Radio />} label="Order Date" />
-          <FormControlLabel value="lastName" control={<Radio />} label="Customer Last Name" />
+          <FormControlLabel value="customerId" control={<Radio />} label="Customer ID" />
           <FormControlLabel value="dollarAmount" control={<Radio />} label="Order Size in $" />
         </RadioGroup>
       </FormControl>

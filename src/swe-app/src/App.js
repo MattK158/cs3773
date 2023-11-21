@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Cart from './pages/Cart';
 import Admin from './pages/Admin';
+import AdminSignIn from './pages/AdminSignIn';
 import { UserProvider } from './UserContext';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/catalog" element={<Catalog addToCart={addToCart} />} />
           <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/adminsignin" element={<AdminSignIn />} />
         </Routes>
       </Router>
     </UserProvider>
