@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Checkout.css';
 import { useUser } from '../UserContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const Checkout = () => {
     const { user } = useUser();
+    const navigate = useNavigate();
     const [cart, setCart] = useState([]);
     const [selectedPickupTime, setSelectedPickupTime] = useState(null);
     const [selectedButton, setSelectedButton] = useState(null);
@@ -73,6 +75,7 @@ const Checkout = () => {
                 .then(response => {
                     console.log('Cart emptied:', response.data);
                     setCart([]);
+                    navigate('/ordersummary');
                 })
                 .catch(error => {
                     console.error('Error during checkout:', error);
