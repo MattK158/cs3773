@@ -24,6 +24,7 @@
   background-color: #fff;
   border: none;
   border-radius: 25px;
+  border-style: solid;
   overflow: hidden;
   padding-bottom: 15px;
   padding-top: 15px;
@@ -123,9 +124,6 @@ button:hover {
 
 /* Notification Styles */
 .notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
   background-color: #04AA6D;
   color: white;
   padding: 15px;

@@ -1,39 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Cart.css';
 import { useUser } from '../UserContext';
 
 function Cart({ cart, setCart, userId }) {
-  const { user, signIn, signOut } = useUser();
+  const { user } = useUser();
   const SALES_TAX_RATE = 0.0825;
   const subtotal = cart.reduce((acc, product) => acc + (Number(product.price) || 0), 0);
   const tax = subtotal * SALES_TAX_RATE;
   const total = subtotal + tax;
-  // dont think we need this state variable below anymore:
-  // const [cartItems, setCartItems] = useState([]);
-  // useEffect(() => {
-  //   const fetchCartItems = async () => {
-  //     try {
-  //       const response = await axios.get('/api/shoppingCarts/1');
-  //       console.log('Cart Items:', response.data);
-  //       setCartItems(response.data);
-  //     } catch (error) {
-  //       console.error('Error fetching cart items:', error);
-  //     }
-  //   };
-
-  //   if (userId) {
-  //     console.log('Fetching cart items for user ID:', userId);
-  //     fetchCartItems();
-  //   }
-  // }, [userId]);
-
-
-  // Josh's code:
-  useEffect(() => {
-    // old endpoint: '/api/shoppingCarts/1'
-    axios.get(`/api/shoppingCarts/${user.custId}`) // `/api/shoppingCarts/${user.customerId}` - hopefully new endpoint works
+  const fetchCartItems = () => {
+    axios.get(`/api/shoppingCarts/${user.custId}`)
       .then((response) => {
         console.log('Cart Items:', response.data.itemsInCart);
         setCart(response.data.itemsInCart);
@@ -41,20 +19,38 @@ function Cart({ cart, setCart, userId }) {
       .catch((error) => {
         console.error('Error fetching data: ', error);
       });
-  }, []);
+  };
+  useEffect(() => {
+    fetchCartItems();
+  }, );
+  const removeItemFromCart = (cartId) => {
+    axios.delete(`/api/shoppingCarts/${cartId}`)
+      .then(response => {
+        console.log('Item removed:', response.data);
+        fetchCartItems(); 
+        const updatedCart = cart.filter(product => product.id !== cartId);
+        setCart(updatedCart);
+      })
+      .catch(error => {
+        console.error('Error removing item from cart:', error);
+      });
+  };
+
+
+  useEffect(() => {
+    axios.get(`/api/shoppingCarts/${user.custId}`) 
+      .then((response) => {
+        console.log('Cart Items:', response.data.itemsInCart);
+        setCart(response.data.itemsInCart);
+      })
+      .catch((error) => {
+        console.error('Error fetching data: ', error);
+      });
+  }, );
 
   const toFixedPrice = (price) => {
     return (typeof price === 'number' && !isNaN(price) ? price.toFixed(2) : 'N/A');
   };
-
-  // console.log('Cart Items (using cart variable):', cart);
-  // cart.forEach((product, index) => {
-  //   console.log(`Product ${index}: Price - ${product.price}, Type - ${typeof product.price}`);
-  // });
-
-  // if (!cart || cart.length === 0) {
-  //   return <div className="cart-empty">Your cart is empty.</div>;
-  // }
 
   return (
     <div className="cart-container">
@@ -66,11 +62,10 @@ function Cart({ cart, setCart, userId }) {
             <img src={product.imgURL || product.imgUrl} alt={product.name} className="cart-item-image" />
               <div className="cart-item-text">
                 <h3 className="cart-item-name">{product.name}</h3>
-                {/* Temporarily display the raw price value */}
                 <p className="cart-item-price">Price: ${product.price}</p>
               </div>
             </div>
-            <button type="submit">Remove</button>
+            <button type="button" onClick={() => removeItemFromCart(product.cartId)}>Remove From Cart</button>
           </div>
         ))}
       </div>
@@ -81,7 +76,7 @@ function Cart({ cart, setCart, userId }) {
       </div>
       <div className="back-to-catalog-container">
       <Link to='/catalog' className="back-to-catalog">Catalog</Link>
-      <a className="back-to-catalog" href="/checkout">Checkout</a>
+      <Link to='/checkout' className="back-to-catalog">Checkout</Link>
       </div>
     </div>
   );

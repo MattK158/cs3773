@@ -12,6 +12,7 @@ const Notification = ({ message }) => {
 };
 
 const Catalog = ({ addToCart }) => {
+  const [searchQuery, setSearchQuery] = useState('');
   const { user, signIn, signOut } = useUser();
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
@@ -72,6 +73,23 @@ const Catalog = ({ addToCart }) => {
     filterItemsByCategory(selectedCategory);
   }, [selectedCategory, filterItemsByCategory]);
 
+  const handleSearch = useCallback(() => {
+    if (!searchQuery) {
+      setFilteredItems(items);
+    } else {
+      const lowercasedQuery = searchQuery.toLowerCase();
+      const searchedItems = items.filter(item =>
+        item.name.toLowerCase().includes(lowercasedQuery) ||
+        item.description.toLowerCase().includes(lowercasedQuery)
+      );
+      setFilteredItems(searchedItems);
+    }
+  }, [searchQuery, items]);
+
+  useEffect(() => {
+    handleSearch();
+  }, [searchQuery, handleSearch]);
+
   const handleAddToCart = (item) => {
     axios.post('/api/shoppingCarts', {
       customerId: user.custId, // Replace with actual customer ID
@@ -96,7 +114,7 @@ const Catalog = ({ addToCart }) => {
       {notification.show && <Notification message={notification.message} />}
       <div className="sort-filter-section">
         <div className="search-bar">
-          <input type="text" placeholder="Search..." name="search"></input>
+          <input type="text" placeholder="Search..." name="search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}></input>
         </div>
         <select onChange={(e) => setSelectedCategory(e.target.value)}>
           <option value="All">All Categories</option>
