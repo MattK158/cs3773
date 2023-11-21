@@ -13,12 +13,14 @@
   
 
 .Admin {
-    background: linear-gradient(
+    /* background: linear-gradient(
         106.37deg,
         #ffcdb2 29.63%,
         #e5989b 51.55%,
         #b5838d 90.85%
-    );
+    ); */
+
+    background: #ffffff;
     height: 100vh;
     display: flex;
     justify-content: center;
