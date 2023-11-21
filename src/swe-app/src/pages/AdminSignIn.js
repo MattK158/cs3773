@@ -45,16 +45,16 @@ export default function SignIn() {
     //   "http://ec2-3-16-1-211.us-east-2.compute.amazonaws.com/api/customerLogin";
 
     try {
-      const response = await axios.post('/api/customerLogin', requestBody);
+      const response = await axios.post('/api/administratorLogin', requestBody);
       console.log("Response:", response.data);
 
       if (response.data.status === "LOGIN_SUCCEEDED") {
         setMessage("Login successful");
         setIsSuccess(true);
-        signIn(response.data.customerDto.id, response.data.customerDto.firstName, response.data.customerDto.lastName, response.data.customerDto.email);
-        console.log("Response Data:", response.data);
-        console.log("User id:", user.custId);
-        console.log("this is after user ID");
+        // signIn(response.data.customerDto.id, response.data.customerDto.firstName, response.data.customerDto.lastName, response.data.customerDto.email);
+        // console.log("Response Data:", response.data);
+        // console.log("User id:", user.custId);
+        // console.log("this is after user ID");
       } else {
         // Handle other statuses or unexpected responses
         setMessage("Login failed");
@@ -73,18 +73,13 @@ export default function SignIn() {
         setMessage("Error: " + error.message);
       }
       setIsSuccess(false);
-      navigate("/"); // Redirect to the home page
+      navigate("/admin"); // Redirect to the home page
     }
+    navigate("/admin"); // Redirect to the home page
   };
 
   return (
     <div>
-      {user ? (
-        <div>
-          <h1>Welcome, {user.firstName}!</h1>
-          {/* <button onClick={handleSignOut}>Sign Out</button> */} {/* Need to do */}
-        </div>
-      ) : (
       <ThemeProvider theme={defaultTheme}>
         <Container
           component="main"
@@ -116,7 +111,7 @@ export default function SignIn() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Customer Sign In
+              Admin Sign In
             </Typography>
             <Box
               component="form"
@@ -181,7 +176,6 @@ export default function SignIn() {
           </Box>
         </Container>
       </ThemeProvider>
-      )}
     </div>
   );
 }

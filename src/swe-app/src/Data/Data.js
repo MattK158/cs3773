@@ -115,21 +115,21 @@ export const BulletinData = [
     {
         png: UilUserCircle,
         name: "John Doe",
-        noti: "someone clean the bathroom",
+        noti: "Maintenance to Aisle 9 for a code 55",
         time: "25 seconds ago"
     },
 
     {
         png: UilUserCircle,
         name: "James Bond",
-        noti: "lock the back door",
+        noti: "Receiving has a truck in the loading dock",
         time: "3 days ago"
     },
 
     {
         png: UilUserCircle,
         name: "Tony Stark",
-        noti: "this program sucks",
+        noti: "Team Lead Meeting at 3pm today",
         time: "1 week ago"
     },
 ];
