@@ -11,6 +11,7 @@ import Cart from './pages/Cart';
 import Admin from './pages/Admin';
 import AdminSignIn from './pages/AdminSignIn';
 import OrderSummary from './pages/OrderSummary';
+import Orders from './pages/Orders';
 import { UserProvider } from './UserContext';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/adminsignin" element={<AdminSignIn />} />
           <Route path="/ordersummary" element={<OrderSummary />} />
+          <Route path="/orders" element={<Orders />} />
         </Routes>
       </Router>
     </UserProvider>

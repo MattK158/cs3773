@@ -22,7 +22,7 @@ function Cart({ cart, setCart, userId }) {
   };
   useEffect(() => {
     fetchCartItems();
-  }, );
+  }, []);
   const removeItemFromCart = (cartId) => {
     axios.delete(`/api/shoppingCarts/${cartId}`)
       .then(response => {
@@ -46,7 +46,7 @@ function Cart({ cart, setCart, userId }) {
       .catch((error) => {
         console.error('Error fetching data: ', error);
       });
-  }, );
+  }, []);
 
   const toFixedPrice = (price) => {
     return (typeof price === 'number' && !isNaN(price) ? price.toFixed(2) : 'N/A');
