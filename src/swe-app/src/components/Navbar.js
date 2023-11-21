@@ -15,6 +15,7 @@ function Navbar() {
       <>
         <nav className='navbar'>
           <div className='navbar-container'>
+              <img src={"/assets/logo.png"} alt="Logo" style={{ width: 'auto', height: '60px' }}/>
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className='nav-item'>
                 <Link
@@ -48,7 +49,7 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-          <img src={"/assets/logo.png"} alt="Logo" style={{ width: 'auto', height: 'px' }}/>
+          <img src={"/assets/logo.png"} alt="Logo" style={{ width: 'auto', height: '60px' }}/>
             <i class='fab fa-typo3' />
           </Link>
           <div className='menu-icon' onClick={handleClick}>
@@ -61,7 +62,7 @@ function Navbar() {
                Home
               </Link>
             </li>
-            <li>
+            <li className='nav-item'>
               <Link
                 to='/catalog'
                 className='nav-links'
@@ -81,7 +82,6 @@ function Navbar() {
                 Checkout
               </Link>
             </li>
-
             {/* <li>
               <Link
                 to='/signup'
@@ -92,7 +92,7 @@ function Navbar() {
                 Sign Up
               </Link>
             </li> */}
-            <li>
+            <li className='nav-item'>
               <Link
                 to='/cart'
                 className='nav-links'
@@ -114,7 +114,6 @@ function Navbar() {
                 Sign Out
               </Link>
             </li>
-            
             {/* <li>
               <Link
                 to='/admin'

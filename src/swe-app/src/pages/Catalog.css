@@ -21,20 +21,19 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
-  border: none;
   border-radius: 25px;
-  border-style: solid;
+  border: 1px solid #fff;
   overflow: hidden;
   padding-bottom: 15px;
   padding-top: 15px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  width: 220px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border 0.3s ease;
+  width: 250px;
 }
 
 .product:hover {
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
   transform: translateY(-5px);
+  border: 1px solid #212121;
 }
 
 .product-image-container {
@@ -75,7 +74,7 @@
 }
 
 /* Buttons */
-button {
+.catalog button {
   font-family: Tahoma, Geneva, sans-serif;
   background-color: #DB0000;
   color: #fff;
@@ -86,7 +85,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.catalog button:hover {
   background-color: #B30000;
 }
 
@@ -124,9 +123,18 @@ button:hover {
 
 /* Notification Styles */
 .notification {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  right: 2%;
+  bottom: 4%;
   background-color: #04AA6D;
   color: white;
-  padding: 15px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 18px;
+  width: 20%;
+  height: 10%;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   z-index: 1000;

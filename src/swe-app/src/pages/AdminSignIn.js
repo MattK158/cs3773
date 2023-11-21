@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useUser } from '../UserContext';
+import './AdminSignIn.css';
 
 const defaultTheme = createTheme({
   palette: {
@@ -82,29 +83,16 @@ export default function SignIn() {
     <div>
       <ThemeProvider theme={defaultTheme}>
         <Container
+          className="admin-in-main"
           component="main"
           maxWidth="xs"
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            alignContent: "center",
           }}
         >
           <CssBaseline />
           <Box
+            className="admin-in-box"
             sx={{
-              marginTop: 10,
-              width: "400px",
-              height: "500px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#ffffff",
-              borderRadius: "25px",
-              padding: "18px 25px",
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>

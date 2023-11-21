@@ -95,7 +95,8 @@ export default function SignIn() {
           }}
         >
           <CssBaseline />
-          <Box className="sign-in-box"
+          <Box
+            className="sign-in-box"
             sx={{
             }}
           >

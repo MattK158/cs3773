@@ -16,6 +16,7 @@
   align-items: center;
   width: 90%; /* Control the width of the navbar content */
   max-width: 1500px;
+  height: inherit;
 }
 
 .navbar-logo {
@@ -40,12 +41,13 @@ img {
 
 .nav-menu {
   display: flex;
+  justify-content: space-evenly;
   list-style: none;
   padding: 0;
 }
 
 .nav-item {
-  margin: 0 10px; /* Space between items */
+  margin: 0 5px; /* Space between items */
 }
 
 .nav-links {
@@ -57,7 +59,7 @@ img {
 }
 
 .nav-links:hover {
-  color: #ddd; /* Slight color change on hover */
+  color: #ccc; /* Slight color change on hover */
 }
 
 .fa-bars {

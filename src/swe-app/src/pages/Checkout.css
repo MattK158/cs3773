@@ -2,70 +2,75 @@
 .checkout-main {
     background-color: #eeeeee;
     display: flex;
-    flex-direction: column; /* Align children vertically */
-    justify-content: center; /* Center children vertically */
-    align-items: center; /* Center children horizontally */
-    min-height: 90vh; /* 90% of viewport height */
+    flex-direction: row; /* Align children vertically */
+    justify-content: space-evenly; /* Center children vertically */
+    align-items: flex-start; /* Center children horizontally */
+    min-height: 100vh; /* 100% of viewport height */
 }
 
-/* Style the container for the form */
-.checkout-container {
-    position: fixed;
-    top: 150px;
-    width: 100%;
-    max-width: 350px;
-    padding: 18px 25px;
-    background-color: #ffffff;
-    border-radius: 25px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.checkout-container-right {
-    position: fixed;
-    right: 50px;
-    top: 150px;
-    width: 100%;
-    max-width: 350px;
-    padding: 18px 25px;
-    background-color: #ffffff;
-    border-radius: 25px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Style the heading */
+.checkout-main h2 {
+    color: #212121;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 30px;
+    text-align: center;
+    margin: 5%;
 }
 
 .checkout-container-left {
     position: relative;
-    right: 500px;
-    width: 100%;
-    max-width: 350px;
-    padding: 18px 25px;
+    width: 30%;
+    max-width: 400px;
+    margin: 3% 65% 3% 0;
+    padding: 0 1% 0 1%;
     background-color: #ffffff;
     border-radius: 25px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-spacing: 70px;
 }
-/* Style the heading */
-.checkout-container h2 {
-    color: #212121;
+
+.cart-summary p {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 16px;
+}
+
+.cart-summary h3 {
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
 }
 
-/* Style each form field */
+/* Style the container for the form */
+.checkout-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 30%;
+    max-width: 400px;
+    margin: 7% 0 3% 0;
+    padding: 0 1% 2% 1%;
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style each form field
 .checkout-container div {
     margin-bottom: 15px;
-}
+} */
 
-/* Style the labels */
+/* Style the labels
 .checkout-container label {
     display: block;
     margin-bottom: 5px;
     color: #555;
-}
+} */
 
 /* Style the input fields */
 .checkout-container input {
-    width: 100%;
+    width: 350px;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ffffff;
@@ -89,49 +94,62 @@
 
 /* Style the submit button */
 .checkout-container button {
-    width: 100%;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 25px;
-    background-color: #DB0000;
-    color: white;
-    font-family: Tahoma, Geneva, sans-serif;
-    font-size: 16px;
-    letter-spacing: 0.5px;
+    width: 350px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-/* Change the background color of the button on hover */
+/* Change the background color of the button on hover
 .checkout-container button:hover {
     background-color: #B30000;
-}
+} */
 
 /* Add a box shadow on button click */
 .checkout-container button:active {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-button.selected {
-    background-color: #4CAF50; /* Green background for selected button */
-    color: white;
-    border: none;
+
+.checkout-container-right {
+    position: fixed;
+    width: 30%;
+    max-width: 400px;
+    margin: 18% 0 3% 65%;
+    padding: 0 1% 2% 1%;
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button {
-    margin: 5px;
+.time-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.time-container button {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 25px;
+}
+
+.checkout-main button {
+    margin-top: 20px;
     padding: 10px 20px;
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
+    background-color: #DB0000;
+    color: white;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
 
-button:hover {
-    background-color: #ddd;
+.checkout-main button:hover {
+    background-color: #B30000;
 }
 
-.selected {
+.checkout-main button.selected {
     background-color: #4CAF50; /* Green background for selected button */
-    color: white;
 }
-
