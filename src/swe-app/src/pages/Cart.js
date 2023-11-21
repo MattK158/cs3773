@@ -65,7 +65,7 @@ function Cart({ cart, setCart, userId }) {
                 <p className="cart-item-price">Price: ${product.price}</p>
               </div>
             </div>
-            <button type="button" onClick={() => removeItemFromCart(product.cartId)}>Remove From Cart</button>
+              <button type="button" onClick={() => removeItemFromCart(product.cartId)}>Remove From Cart</button>
           </div>
         ))}
       </div>

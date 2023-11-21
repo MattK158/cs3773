@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Checkout.css';
 import { useUser } from '../UserContext';
 
+
 const Checkout = () => {
     const { user } = useUser();
     const [cart, setCart] = useState([]);
@@ -106,7 +107,7 @@ const Checkout = () => {
                         <input type="text" name="cardCVV" placeholder="Card CVV" value={formData.cardCVV} onChange={handleChange} required />
                     </div>
                     <div>
-                        <button type="submit">Complete Checkout</button>
+                        <button type="submit" href="/orders" className="complete-checkout-button">Complete Checkout</button>
                     </div>
                 </form>
             </div>
@@ -120,7 +121,7 @@ const Checkout = () => {
                                 <img src={product.imgURL || product.imgUrl} alt={product.name} className="cart-item-image" />
                                 <div className="cart-item-text">
                                     <h3 className="cart-item-name">{product.name}</h3>
-                                    <p className="cart-item-price">Price: ${toFixedPrice(product.price)}</p>
+                                    <p className="cart-item-price">Price: ${product.price}</p>
                                 </div>
                             </div>
                         </div>
